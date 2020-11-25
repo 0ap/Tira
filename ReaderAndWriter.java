@@ -185,6 +185,10 @@ public class ReaderAndWriter{
 			return table;
 		}	
 		
+		//In AND-operation construct 2 hashtables. First add all numbers from first file to one hashtable.
+		//After that we go through the second file, and check if number is in the first hashtable.
+		//If it is then both files contain the same number. In that case add it to the 2nd table. 
+		//Returns the 2nd table.		
 		if (operation.equals("AND")){ //If we're doing AND operation
 			HashTable table = new HashTable();//Construct 2 tabels
 			HashTable table2 = new HashTable();
@@ -219,6 +223,7 @@ public class ReaderAndWriter{
 			}
 			return table2;
 		}
+	
 		if (operation.equals("XOR")){ //If we're doing XOR operation, construct 2 tabels.
 			HashTable table = new HashTable();	
 			HashTable deleted = new HashTable();

@@ -11,11 +11,11 @@ public class HashTable {
     
     private int size;
     private double loadFactor;
-	//Array for nodes
+    //Array for nodes
     private Node[] table;
     private int count;
 	
-	//If you wish to construct the table with custom loadfactor and size
+    //If you wish to construct the table with custom loadfactor and size
     public HashTable (int size, double loadFactor){
         this.size = size;
         this.loadFactor = loadFactor;
@@ -29,7 +29,8 @@ public class HashTable {
     }
 
 
-    //Add to hashtable
+    //Add function for adding a integer in to the hashtable
+	
     public void put(int key, int value){        
         int bucket = key % size; //Calculate the correct bucket. Use the key as hash value.       
         Node listNode = this.table[bucket];     
@@ -52,20 +53,20 @@ public class HashTable {
                 resizeTable();           
         }
     }
-    //Delete a key from the table.
+    //Delete function.
     public boolean delete(int key){
         int bucket = key % size;
         if (table[bucket] == null)
             return false; //If the bucket was empty, return false.
         
-		//If head of the bucket contains the right key, delete it and set the next node as head of bucket.
+	//If head of the bucket contains the right key, delete it and set the next node as head of bucket.
         if (table[bucket].getKey() == key){
             table[bucket] = table[bucket].getNext();
             this.count--;
             return true;         
         }
         
-		//If the right key is not the head of bucket search for it while keeping tracking of previous node.
+	//If the right key is not the head of bucket search for it while keeping tracking of previous node.
         Node prev = table[bucket];
         Node current = prev.getNext();
         while (current != null && current.getKey() != key){
@@ -73,29 +74,32 @@ public class HashTable {
             current = current.getNext();            
         }
         
-		//If the wanted node was found, delete it.
+	//If the wanted node was found, delete it.
         if (current != null){
             prev.setNext(current.getNext());
             this.count--;
             return true;
         }
-		//Return false if key was not found.
+	//Return false if key was not found.
         return false;
     }
     
-	//Returns node associated with key
-	public Node get(int key){       
+    //Returns node associated with key
+    public Node get(int key){       
        int bucket = key % size;
        Node listNode = table[bucket];
+       //Iterate nodes untill we hit null node.
        while (listNode != null){
+	   //If node equals key we're searching return it    
            if (listNode.getKey() == key)
                return listNode;
            listNode = listNode.getNext();
        }       
        return null;
    }
-   
-	public boolean contains(int key){
+	
+    //Function for checking if hashtable contains a key.
+    public boolean contains(int key){
        int bucket = key % size;
        Node listNode = table[bucket];
        while (listNode != null){
@@ -107,7 +111,7 @@ public class HashTable {
    }
     
    
-    
+    //Function for resizing the table. Doubles the space in the table.
     public void resizeTable(){
         this.size = size * 2;
         Node[] tempTable = new Node[size];        
@@ -125,7 +129,7 @@ public class HashTable {
         this.table = tempTable;      
     }
     
-    
+    //Function for checking collisions in the hashtable.
     public double distribution(){
         int counter = 0;
         for (int i = 0; i < this.table.length; i++){
@@ -135,7 +139,7 @@ public class HashTable {
         return new Double(counter)/new Double(this.count);
     }
 	
-	//Prints key and value pairs of the table.
+    //Prints key and value pairs of the table.
     void print(){
 		System.out.println("---------------------------");
         for (int i = 0; i < table.length; i++){             

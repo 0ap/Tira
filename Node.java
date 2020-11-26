@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TIRA 2019 Coursework
+ * Okko Partanen
+ *
+ * Simple class representing nodes of hashtables.
+ * Every node has a value, a key and pointer to the next node 
  */
 
 public class Node {

@@ -1,5 +1,12 @@
 import java.util.Scanner;
 
+/*
+ * TIRA2019 Coursework
+ * Okko Partanen
+ *
+ * Tira2019HT class is responsible for the interaction between user and the program.
+ * Calls readerandwriter to perform the set-operations.
+*/
 public class Tira2019HT{
 	public void run(){	
 		Scanner keyboard = new Scanner(System.in);
